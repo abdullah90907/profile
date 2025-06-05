@@ -1,0 +1,55 @@
+[build]
+  # Since your site is already built and in the public folder
+  # we don't need a build command
+  publish = "public"
+  
+[build.environment]
+  # Hugo version (if you want to rebuild on Netlify in the future)
+  HUGO_VERSION = "0.147.7"
+
+# Headers for better performance and security
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Cache static assets
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+[[headers]]
+  for = "/fontawesome-6/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+[[headers]]
+  for = "/bootstrap-5/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+# Redirects for better SEO (optional)
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
+
+# Handle 404 errors
+[[redirects]]
+  from = "/*"
+  to = "/404.html"
+  status = 404
